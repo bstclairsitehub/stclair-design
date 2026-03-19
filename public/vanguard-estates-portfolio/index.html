@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanguard Estates - Luxury Real Estate Brokerage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #111111;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== COLOR PALETTE ===== */
+        :root {
+            --navy: #0B1437;
+            --gold: #D4A843;
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+            --text-primary: #111111;
+            --text-secondary: #666666;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            background: rgba(11, 20, 55, 0);
+        }
+
+        nav.scrolled {
+            background: rgba(11, 20, 55, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 1rem 3rem;
+        }
+
+        .nav-logo {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-logo::before {
+            content: "◆";
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-center a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-center a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-center a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-phone {
+            color: var(--white);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-phone:hover {
+            color: var(--gold);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: #e8c549;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 168, 67, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--white);
+            border-radius: 0;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, #0f1a4a 100%);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(212, 168, 67, 0.05) 0%, transparent 50%),
+                repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(212, 168, 67, 0.03) 35px, rgba(212, 168, 67, 0.03) 70px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 168, 67, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            color: var(--white);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(212, 168, 67, 0.2);
+            color: var(--gold);
+            padding: 0.5rem 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .hero-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 90%;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 168, 67, 0.3);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideInRight 0.8s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-card-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .hero-card-content {
+            padding: 2rem;
+            color: var(--text-primary);
+        }
+
+        .hero-card-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-card-address {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hero-card-detail {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-card-price {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .hero-card-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero-card-link:hover {
+            gap: 1rem;
+        }
+
+        /* ===== FEATURED PROPERTIES ===== */
+        .featured-properties {
+            background: var(--white);
+            padding: 6rem 3rem;
+        }
+
+        .section-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 3rem 0;
+            font-size: 1rem;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .property-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.08);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .property-content {
+            padding: 2rem;
+        }
+
+        .property-price {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .property-address {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .property-specs {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .property-spec {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .property-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .property-view-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .property-view-link:hover {
+            gap: 1rem;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: var(--light-gray);
+            padding: 6rem 3rem;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content h2 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .about-stat {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-stat-number {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background: var(--white);
+            padding: 6rem 3rem;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border-top: 4px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            border-top-color: var(--gold);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: rgba(212, 168, 67, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .service-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== WHY VANGUARD SECTION ===== */
+        .why-vanguard {
+            background: linear-gradient(135deg, var(--navy) 0%, #0f1a4a 100%);
+            padding: 6rem 3rem;
+            color: var(--white);
+        }
+
+        .why-vanguard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .why-vanguard h2 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .why-vanguard h2::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(212, 168, 67, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .why-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--gold);
+            transform: translateY(-8px);
+        }
+
+        .why-number {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .why-label {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team {
+            background: var(--white);
+            padding: 6rem 3rem;
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .agent-card {
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .agent-image {
+            width: 100%;
+            height: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .agent-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .agent-card:hover .agent-image img {
+            transform: scale(1.05);
+        }
+
+        .agent-name {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-title {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .agent-bio {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            background: var(--light-gray);
+            padding: 6rem 3rem;
+        }
+
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            padding-top: 3.5rem;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-property {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ===== SEARCH BANNER ===== */
+        .search-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, #0f1a4a 100%);
+            padding: 4rem 3rem;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .search-banner-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .search-banner h2 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .search-form input,
+        .search-form select {
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .search-form input::placeholder,
+        .search-form select {
+            color: var(--text-secondary);
+        }
+
+        .search-form button {
+            padding: 1rem 2rem;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: var(--white);
+            padding: 6rem 3rem;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-info-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info-title {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .contact-info-text {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .contact-form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 8px;
+        }
+
+        .contact-form-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.1);
+        }
+
+        .form-group button {
+            width: 100%;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 168, 67, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 168, 67, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-card {
+                display: none;
+            }
+
+            .properties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+
+            .nav-phone {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding-top: 80px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-primary,
+            .btn-outline {
+                font-size: 0.8rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+
+        /* ===== SCROLL REVEAL ANIMATION ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-logo">Vanguard Estates</div>
+        <div class="nav-center">
+            <a href="#properties">Properties</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#team">Team</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="tel:+12125550147" class="nav-phone">+1 (212) 555-0147</a>
+            <a href="#properties" class="btn-primary">Find a Property</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-tag">Luxury Real Estate</div>
+                <h1 class="hero-title">Your Most Important Address Starts Here</h1>
+                <p class="hero-subtitle">From Miami Beach to Malibu, the Hamptons to Amalfi — we don't list homes, we unlock lives.</p>
+                <div class="hero-cta">
+                    <a href="#properties" class="btn-primary">Explore Properties</a>
+                    <a href="#" class="btn-outline">Watch Our Story</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">$2.8B+</div>
+                        <div class="stat-label">Sales Volume</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">340+</div>
+                        <div class="stat-label">Properties</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">18+</div>
+                        <div class="stat-label">Years</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Oceanview Penthouse" class="hero-card-image">
+                <div class="hero-card-content">
+                    <div class="hero-card-title">Oceanview Penthouse</div>
+                    <div class="hero-card-address">Miami Beach, Florida</div>
+                    <div class="hero-card-price">$8,500,000</div>
+                    <div class="hero-card-details">
+                        <div class="hero-card-detail">4 Bedrooms</div>
+                        <div class="hero-card-detail">5 Bathrooms</div>
+                    </div>
+                    <div class="hero-card-detail">4,200 sq ft</div>
+                    <a href="#" class="hero-card-link">View Property →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="featured-properties" id="properties">
+        <div class="container">
+            <h2 class="section-title">Featured Listings</h2>
+            <div class="properties-grid">
+                <!-- Property 1 -->
+                <div class="property-card reveal">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Miami Penthouse">
+                        <span class="property-badge">Featured</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">$8.5M</div>
+                        <div class="property-address">Miami Beach Oceanfront Penthouse</div>
+                        <div class="property-specs">
+                            <div class="property-spec">4 BD</div>
+                            <div class="property-spec">5 BA</div>
+                            <div class="property-spec">4,200 sqft</div>
+                        </div>
+                        <div class="property-description">Stunning oceanfront luxury with floor-to-ceiling windows, private infinity pool, and direct beach access.</div>
+                        <a href="#" class="property-view-link">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="property-card reveal">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1613490493576-004d30e4e4e4?auto=format&fit=crop&w=600&q=80" alt="Malibu Estate">
+                        <span class="property-badge">Exclusive</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">$4.2M</div>
+                        <div class="property-address">Malibu Cliffside Estate</div>
+                        <div class="property-specs">
+                            <div class="property-spec">3 BD</div>
+                            <div class="property-spec">3 BA</div>
+                            <div class="property-spec">3,100 sqft</div>
+                        </div>
+                        <div class="property-description">Contemporary architecture perched on pristine cliffs with panoramic Pacific views and resort-style amenities.</div>
+                        <a href="#" class="property-view-link">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="property-card reveal">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80" alt="Hamptons Compound">
+                        <span class="property-badge">New</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">$12.8M</div>
+                        <div class="property-address">Hamptons Estate Compound</div>
+                        <div class="property-specs">
+                            <div class="property-spec">6 BD</div>
+                            <div class="property-spec">7 BA</div>
+                            <div class="property-spec">8,500 sqft</div>
+                        </div>
+                        <div class="property-description">Grand estate with guest houses, tennis court, spa, and private beach access. Timeless elegance meets modern luxury.</div>
+                        <a href="#" class="property-view-link">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Property 4 -->
+                <div class="property-card reveal">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1560185127-6a3e3dce3bf1?auto=format&fit=crop&w=600&q=80" alt="Beverly Hills Villa">
+                        <span class="property-badge">Price Reduced</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">$6.1M</div>
+                        <div class="property-address">Beverly Hills Hilltop Villa</div>
+                        <div class="property-specs">
+                            <div class="property-spec">5 BD</div>
+                            <div class="property-spec">6 BA</div>
+                            <div class="property-spec">6,200 sqft</div>
+                        </div>
+                        <div class="property-description">Stunning hilltop mansion with city views, resort pool, spa, and smart home automation throughout.</div>
+                        <a href="#" class="property-view-link">View Details →</a>
+                    </div>
+                </div>
+
+                <!-- Property 5 -->
+                <div class="property-card reveal">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=600&q=80" alt="Aspen Chalet">
+                        <span class="property-badge">Off-Market</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">$3.8M</div>
+                        <div class="property-address">Aspen Mountain Chalet</div>
+                        <div class="property-specs">
+                            <div class="property-spec">4 BD</div>
+                            <div class="property-spec">4 BA</div>
+                            <div class="property-spec">3,800 sqft</div>
+                        </div>
+                        <div class="property-description">Luxurious alpine retreat with private ski access, heated outdoor pools, and world-class dining.</div>
+                        <a href="#" class="property-view-link">View Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=700&q=80" alt="Luxury Estate">
+            </div>
+            <div class="about-content">
+                <h2>About Vanguard</h2>
+                <p class="about-text">Founded in 2006 by William Vanguard, a former Sotheby's International Realty Director, Vanguard Estates has become the premier luxury real estate brokerage serving the world's most discerning clientele. With $2.8 billion in completed transactions and a portfolio of 340+ premium properties, we've established ourselves as the gold standard in luxury real estate.</p>
+                <p class="about-text">Our philosophy is simple: we don't sell homes—we unlock lives. Every property we represent is carefully curated. Every client relationship is built on trust, transparency, and results.</p>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <div class="about-stat-number">$2.8B+</div>
+                        <div class="about-stat-label">Transactions</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">340+</div>
+                        <div class="about-stat-label">Properties</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">18+</div>
+                        <div class="about-stat-label">Years of Excellence</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">99%</div>
+                        <div class="about-stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">🏡</div>
+                    <h3 class="service-title">Buyer Representation</h3>
+                    <p class="service-description">Expert guidance through every step of your luxury home purchase with exclusive access to premium listings and market intelligence.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🎯</div>
+                    <h3 class="service-title">Seller Representation</h3>
+                    <p class="service-description">Strategic marketing and pricing strategies to maximize your property's value with our global buyer network.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Market Analysis</h3>
+                    <p class="service-description">Comprehensive market reports, trend analysis, and investment insights to inform your real estate decisions.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">💎</div>
+                    <h3 class="service-title">Investment Advisory</h3>
+                    <p class="service-description">Curated investment opportunities for portfolio diversification in the world's most sought-after locations.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🌍</div>
+                    <h3 class="service-title">International Properties</h3>
+                    <p class="service-description">Access to luxury real estate across Europe, Asia, and the Caribbean through our global network partnerships.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🔐</div>
+                    <h3 class="service-title">Off-Market Access</h3>
+                    <p class="service-description">Exclusive access to pocket listings and properties not yet available on the public market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Vanguard Section -->
+    <section class="why-vanguard">
+        <div class="why-vanguard-container">
+            <h2>Why Choose Vanguard</h2>
+            <div class="why-grid">
+                <div class="why-card reveal">
+                    <div class="why-number">200+</div>
+                    <div class="why-label">Luxury Brokers & Specialists</div>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-number">23</div>
+                    <div class="why-label">Avg Days on Market</div>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-number">$1.4B</div>
+                    <div class="why-label">Closed This Year</div>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-number">40</div>
+                    <div class="why-label">Countries in Network</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="team-container">
+            <h2 class="section-title">Meet Our Agents</h2>
+            <div class="team-grid">
+                <div class="agent-card reveal">
+                    <div class="agent-image">
+                        <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=400&q=80" alt="Alexandra Sterling">
+                    </div>
+                    <h3 class="agent-name">Alexandra Sterling</h3>
+                    <p class="agent-title">Senior Director, Miami & Hamptons</p>
+                    <p class="agent-bio">18 years in luxury real estate with $650M+ in career sales specializing in oceanfront properties.</p>
+                </div>
+                <div class="agent-card reveal">
+                    <div class="agent-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Marcus Rothschild">
+                    </div>
+                    <h3 class="agent-name">Marcus Rothschild</h3>
+                    <p class="agent-title">Executive Vice President, New York</p>
+                    <p class="agent-bio">Former Sotheby's executive with deep connections in Manhattan's most prestigious addresses.</p>
+                </div>
+                <div class="agent-card reveal">
+                    <div class="agent-image">
+                        <img src="https://images.unsplash.com/photo-1598550874175-4d0ef436c909?auto=format&fit=crop&w=400&q=80" alt="Isabella Martinez">
+                    </div>
+                    <h3 class="agent-name">Isabella Martinez</h3>
+                    <p class="agent-title">Director, Los Angeles & Malibu</p>
+                    <p class="agent-bio">Premier luxury agent representing Hollywood's elite with $400M+ in completed transactions.</p>
+                </div>
+                <div class="agent-card reveal">
+                    <div class="agent-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="David Chen">
+                    </div>
+                    <h3 class="agent-name">David Chen</h3>
+                    <p class="agent-title">Director, Aspen & Mountain Properties</p>
+                    <p class="agent-bio">Specialist in ultra-luxury alpine real estate with expertise across ski communities worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">Client Stories</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">Vanguard Estates made finding our dream Hamptons retreat effortless. Their market knowledge and global network are unmatched. Within 30 days, we closed on the perfect property at the right price.</p>
+                    <p class="testimonial-author">Catherine & James Richardson</p>
+                    <p class="testimonial-property">Hamptons Estate Compound - $12.8M</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">As an international investor, I needed local expertise with global perspective. Vanguard delivered both. They sold our Miami penthouse 15% above asking in just three weeks.</p>
+                    <p class="testimonial-author">Sheikh Khalid Al-Nahyan</p>
+                    <p class="testimonial-property">Miami Beach Oceanfront - $8.5M</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">Professional, discreet, and results-oriented. Vanguard's team understood our needs for a private mountain retreat and found exactly what we were looking for in Aspen.</p>
+                    <p class="testimonial-author">Michael & Susan Lawrence</p>
+                    <p class="testimonial-property">Aspen Mountain Chalet - $3.8M</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Banner -->
+    <section class="search-banner">
+        <div class="search-banner-container">
+            <h2>Find Your Dream Property</h2>
+            <form class="search-form" onsubmit="handleSearch(event)">
+                <input type="text" placeholder="Location or Address" required>
+                <select required>
+                    <option value="">Property Type</option>
+                    <option value="penthouse">Penthouse</option>
+                    <option value="villa">Villa</option>
+                    <option value="estate">Estate</option>
+                    <option value="chalet">Chalet</option>
+                </select>
+                <select required>
+                    <option value="">Budget Range</option>
+                    <option value="3-5">$3M - $5M</option>
+                    <option value="5-10">$5M - $10M</option>
+                    <option value="10-20">$10M - $20M</option>
+                    <option value="20+">$20M+</option>
+                </select>
+                <button type="submit" class="btn-primary">Search</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info-grid">
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">📞</div>
+                    <h3 class="contact-info-title">Phone</h3>
+                    <a href="tel:+12125550147" class="contact-info-text">+1 (212) 555-0147</a>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">✉️</div>
+                    <h3 class="contact-info-title">Email</h3>
+                    <a href="mailto:estates@vanguardre.com" class="contact-info-text">estates@vanguardre.com</a>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">📍</div>
+                    <h3 class="contact-info-title">Offices</h3>
+                    <p class="contact-info-text">NY • Miami • LA • Aspen</p>
+                </div>
+            </div>
+            <div class="contact-form-container">
+                <h3 class="contact-form-title">Send us a Message</h3>
+                <form onsubmit="handleContactForm(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget">
+                            <option value="">Select a range</option>
+                            <option value="3-5">$3M - $5M</option>
+                            <option value="5-10">$5M - $10M</option>
+                            <option value="10-20">$10M - $20M</option>
+                            <option value="20+">$20M+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Vanguard Estates</h3>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">Redefining luxury real estate since 2006. Premier properties for discerning clients worldwide.</p>
+                <div class="footer-social">
+                    <a href="#" title="Instagram">I</a>
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="Twitter">X</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#properties">Featured Listings</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Offices</h3>
+                <ul>
+                    <li><a href="#">New York</a></li>
+                    <li><a href="#">Miami</a></li>
+                    <li><a href="#">Los Angeles</a></li>
+                    <li><a href="#">Aspen</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="tel:+12125550147">+1 (212) 555-0147</a></li>
+                    <li><a href="mailto:estates@vanguardre.com">estates@vanguardre.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Vanguard Estates. All Rights Reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll reveals
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form handlers
+        function handleSearch(e) {
+            e.preventDefault();
+            alert('Search functionality integrated with property database');
+            e.target.reset();
+        }
+
+        function handleContactForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Thank you, ${name}! We'll be in touch shortly.`);
+            e.target.reset();
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

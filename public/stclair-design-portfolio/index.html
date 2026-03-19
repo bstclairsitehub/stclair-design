@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St Clair Design - Los Angeles Web Design & Branding Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: #F5F4F0;
+            --white: #FFFFFF;
+            --black: #111111;
+            --gray-text: #444444;
+            --accent-red: #FF3B2F;
+            --border-light: #E8E8E8;
+            --dark-bg: #111111;
+            
+            --spacing-80: 80px;
+            --spacing-60: 60px;
+            --spacing-40: 40px;
+            --spacing-32: 32px;
+            --spacing-24: 24px;
+            --spacing-16: 16px;
+            --spacing-12: 12px;
+            --spacing-8: 8px;
+            
+            --shadow-light: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-nav: 0 2px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--black);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-40);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-24);
+        }
+
+        h1 {
+            font-size: 64px;
+        }
+
+        h2 {
+            font-size: 48px;
+        }
+
+        h3 {
+            font-size: 32px;
+        }
+
+        p {
+            margin-bottom: var(--spacing-16);
+            color: var(--gray-text);
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: var(--white);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-40);
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: var(--shadow-nav);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-40);
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            color: var(--black);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            border: 2px solid var(--accent-red);
+            color: var(--accent-red);
+            padding: var(--spacing-12) var(--spacing-24);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-red);
+            color: var(--white);
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            padding-top: calc(120px + var(--spacing-80));
+            padding-bottom: var(--spacing-80);
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--bg-light);
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(245,244,240,0.92) 0%, rgba(245,244,240,0.80) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            color: var(--black);
+            font-size: 72px;
+            margin-bottom: var(--spacing-32);
+            letter-spacing: -1px;
+        }
+
+        .hero-tagline {
+            color: var(--accent-red);
+            font-size: 13px;
+            margin-bottom: var(--spacing-24);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .hero-subtitle {
+            color: rgba(17, 17, 17, 0.6);
+            font-size: 16px;
+            margin-bottom: var(--spacing-16);
+        }
+
+        .hero-supporting {
+            color: rgba(17, 17, 17, 0.55);
+            font-size: 16px;
+            max-width: 600px;
+            margin-bottom: var(--spacing-40);
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-red);
+            color: var(--white);
+            padding: 16px 40px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(255, 59, 47, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px rgba(255, 59, 47, 0.3);
+        }
+
+        /* MARQUEE */
+        .marquee {
+            background: var(--white);
+            padding: var(--spacing-24) 0;
+            overflow: hidden;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll-left 20s linear infinite;
+            white-space: nowrap;
+            gap: var(--spacing-40);
+        }
+
+        .marquee-item {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: 1px;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* PORTFOLIO SECTION */
+        .portfolio-section {
+            background: var(--primary-bg);
+            padding: var(--spacing-80) 0;
+            position: relative;
+        }
+
+        .section-number {
+            position: absolute;
+            top: var(--spacing-60);
+            left: var(--spacing-40);
+            font-family: 'Syne', sans-serif;
+            font-size: 120px;
+            font-weight: 800;
+            color: rgba(17, 17, 17, 0.08);
+            z-index: 0;
+            line-height: 1;
+        }
+
+        .section-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: var(--spacing-80);
+        }
+
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-red);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-40);
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            background: var(--white);
+            border-radius: 2px;
+            cursor: pointer;
+            group: portfolio;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image {
+            transform: scale(1.08);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: var(--spacing-32);
+            color: var(--white);
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-red);
+            margin-bottom: var(--spacing-8);
+            font-weight: 600;
+        }
+
+        .portfolio-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .portfolio-client {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* SERVICES SECTION */
+        .services-section {
+            background: var(--white);
+            padding: var(--spacing-80) 0;
+            position: relative;
+        }
+
+        .services-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-80);
+            align-items: start;
+        }
+
+        .services-list {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-item {
+            margin-bottom: var(--spacing-60);
+            padding-bottom: var(--spacing-40);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-red);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .service-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-8);
+            color: var(--black);
+        }
+
+        .service-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-red);
+            margin-bottom: var(--spacing-12);
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: var(--gray-text);
+            line-height: 1.7;
+        }
+
+        .services-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-image img {
+            width: 100%;
+            border-radius: 2px;
+            box-shadow: var(--shadow-light);
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            background: var(--dark-bg);
+            padding: var(--spacing-80) 0;
+            color: var(--white);
+            position: relative;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-80);
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--white);
+            margin-bottom: var(--spacing-32);
+        }
+
+        .about-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-24);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-40);
+            margin-top: var(--spacing-60);
+        }
+
+        .stat {
+            border-top: 2px solid var(--accent-red);
+            padding-top: var(--spacing-24);
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--accent-red);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* TEAM SECTION */
+        .team-section {
+            background: var(--primary-bg);
+            padding: var(--spacing-80) 0;
+            position: relative;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-40);
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-image {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            margin-bottom: var(--spacing-24);
+            border-radius: 2px;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .team-member:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .team-role {
+            font-size: 13px;
+            color: var(--gray-text);
+            font-weight: 500;
+        }
+
+        /* TESTIMONIALS SECTION */
+        .testimonials-section {
+            background: var(--white);
+            padding: var(--spacing-80) 0;
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-family: 'Syne', sans-serif;
+            font-size: 80px;
+            color: var(--accent-red);
+            margin-bottom: var(--spacing-24);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial {
+            display: none;
+            animation: fade-in 0.6s ease;
+        }
+
+        .testimonial.active {
+            display: block;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .testimonial-text {
+            font-size: 20px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: var(--spacing-32);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .testimonial-role {
+            font-size: 13px;
+            color: var(--gray-text);
+        }
+
+        .testimonial-dots {
+            margin-top: var(--spacing-40);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-12);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--accent-red);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* PROCESS SECTION */
+        .process-section {
+            background: var(--dark-bg);
+            padding: var(--spacing-80) 0;
+            color: var(--white);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-40);
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step {
+            text-align: center;
+        }
+
+        .process-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-24);
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .process-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--spacing-12);
+        }
+
+        .process-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background: var(--dark-bg);
+            padding: var(--spacing-80) 0;
+            color: var(--white);
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: var(--spacing-60);
+        }
+
+        .contact-heading h2 {
+            color: var(--white);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-80);
+        }
+
+        .contact-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            margin-bottom: var(--spacing-40);
+            padding-bottom: var(--spacing-40);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-red);
+            margin-bottom: var(--spacing-8);
+            font-weight: 600;
+        }
+
+        .contact-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .contact-value a {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-20);
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            display: flex;
+            gap: var(--spacing-16);
+        }
+
+        .form-input {
+            flex: 1;
+            padding: var(--spacing-16);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        textarea.form-input {
+            grid-column: 1 / -1;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            background: var(--accent-red);
+            color: var(--white);
+            padding: var(--spacing-16) var(--spacing-40);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px rgba(255, 59, 47, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--white);
+            padding: var(--spacing-60) var(--spacing-40);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--spacing-40);
+            align-items: start;
+            margin-bottom: var(--spacing-60);
+        }
+
+        .footer-col h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--spacing-24);
+            color: var(--black);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: var(--spacing-12);
+        }
+
+        .footer-col a {
+            color: var(--gray-text);
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-red);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-40);
+            border-top: 1px solid var(--border-light);
+            font-size: 13px;
+            color: var(--gray-text);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-24);
+        }
+
+        .social-links a {
+            color: var(--gray-text);
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-red);
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 var(--spacing-32);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-content,
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-menu {
+                gap: var(--spacing-24);
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --spacing-80: 60px;
+                --spacing-60: 48px;
+                --spacing-40: 32px;
+            }
+
+            nav {
+                padding: 0 var(--spacing-24);
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero-tagline {
+                font-size: 16px;
+            }
+
+            .section-number {
+                font-size: 80px;
+            }
+
+            .team-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                gap: var(--spacing-16);
+            }
+
+            .form-group {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-32);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--spacing-24);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--spacing-16);
+            }
+
+            nav {
+                height: 70px;
+                padding: 0 var(--spacing-16);
+            }
+
+            .logo {
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .hero {
+                padding-top: calc(100px + var(--spacing-40));
+                padding-bottom: var(--spacing-40);
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                margin-bottom: var(--spacing-24);
+            }
+
+            .hero-tagline {
+                font-size: 14px;
+            }
+
+            .marquee-content {
+                font-size: 14px;
+            }
+
+            .section-number {
+                font-size: 60px;
+                left: var(--spacing-16);
+            }
+
+            .testimonial-text {
+                font-size: 16px;
+            }
+
+            .process-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="logo">ST CLAIR</div>
+        <ul class="nav-menu">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">LET'S TALK</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img
+            class="hero-bg-image"
+            src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1600&q=80"
+            alt=""
+            loading="eager"
+        />
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>WE BUILD THINGS THAT HIT DIFFERENT.</h1>
+                <p class="hero-tagline">// St Clair Design — Los Angeles based boutique studio crafting digital weapons for brands that refuse mediocrity.</p>
+                <p class="hero-subtitle">Award-winning web design, branding, and digital strategy since 2019.</p>
+                <p class="hero-supporting">We're the alternative to forgettable agency work. Every project is intentional. Every detail matters. Every result speaks for itself.</p>
+                <a href="#contact" class="cta-button">START A PROJECT</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee">
+        <div class="marquee-content">
+            <span class="marquee-item">WEB DESIGN</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">BRANDING</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">UI/UX</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">DEVELOPMENT</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">DIGITAL STRATEGY</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">WEB DESIGN</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">BRANDING</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">UI/UX</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">DEVELOPMENT</span>
+            <span class="marquee-item">•</span>
+            <span class="marquee-item">DIGITAL STRATEGY</span>
+            <span class="marquee-item">•</span>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO / WORK -->
+    <section class="portfolio-section" id="work">
+        <div class="container">
+            <div class="section-number">01</div>
+            <div class="section-header reveal">
+                <h2>SELECTED WORK</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-card reveal">
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80" alt="Apex Studios Rebrand" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-category">Brand Identity</div>
+                        <div class="portfolio-title">Apex Studios Rebrand</div>
+                        <div class="portfolio-client">Creative Studio</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card reveal">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Luna Co. E-Commerce" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-category">Web Design</div>
+                        <div class="portfolio-title">Luna Co. E-Commerce</div>
+                        <div class="portfolio-client">Fashion Brand</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card reveal">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169167?auto=format&fit=crop&w=800&q=80" alt="Zero Gravity Campaign" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-category">Digital Campaign</div>
+                        <div class="portfolio-title">Zero Gravity Campaign</div>
+                        <div class="portfolio-client">Tech Startup</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card reveal">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" alt="Pulse Digital Platform" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-category">Development</div>
+                        <div class="portfolio-title">Pulse Digital Platform</div>
+                        <div class="portfolio-client">SaaS Company</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-number">02</div>
+            <div class="section-header reveal">
+                <h2>WHAT WE DO</h2>
+            </div>
+            <div class="services-content">
+                <div class="services-list">
+                    <div class="service-item reveal">
+                        <div class="service-number">01</div>
+                        <h3 class="service-title">Web Design</h3>
+                        <div class="service-price">$8,000 – $25,000</div>
+                        <p class="service-description">Beautiful, high-converting websites that drive results. From strategy through design to launch, we create digital experiences that matter.</p>
+                    </div>
+
+                    <div class="service-item reveal">
+                        <div class="service-number">02</div>
+                        <h3 class="service-title">Brand Identity</h3>
+                        <div class="service-price">$5,000 – $15,000</div>
+                        <p class="service-description">Complete brand systems that resonate. Logo, guidelines, voice, and visual identity that sets you apart from the noise.</p>
+                    </div>
+
+                    <div class="service-item reveal">
+                        <div class="service-number">03</div>
+                        <h3 class="service-title">UI/UX Design</h3>
+                        <div class="service-price">$6,000 – $20,000</div>
+                        <p class="service-description">User-centered design that solves real problems. We design interfaces that are intuitive, beautiful, and accessible.</p>
+                    </div>
+
+                    <div class="service-item reveal">
+                        <div class="service-number">04</div>
+                        <h3 class="service-title">Web Development</h3>
+                        <div class="service-price">$10,000 – $40,000</div>
+                        <p class="service-description">Performant, scalable solutions built with modern tech. We turn designs into lightning-fast, reliable applications.</p>
+                    </div>
+
+                    <div class="service-item reveal">
+                        <div class="service-number">05</div>
+                        <h3 class="service-title">E-Commerce</h3>
+                        <div class="service-price">$12,000 – $35,000</div>
+                        <p class="service-description">Stores that sell. Conversion-optimized e-commerce platforms with seamless checkout and analytics integration.</p>
+                    </div>
+
+                    <div class="service-item reveal">
+                        <div class="service-number">06</div>
+                        <h3 class="service-title">Digital Strategy</h3>
+                        <div class="service-price">$4,000 – $12,000</div>
+                        <p class="service-description">Strategic roadmaps for digital success. Market research, competitive analysis, and actionable recommendations.</p>
+                    </div>
+                </div>
+
+                <div class="services-image reveal">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Team Collaboration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-number">03</div>
+            <div class="section-header reveal">
+                <h2>WHO WE ARE</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="reveal">St Clair Design was founded in 2019 by Berlin St Clair in Los Angeles, born from a singular frustration: the lack of bold, intentional design in the digital space. What started as a solo mission has grown into a tight-knit team of designers, developers, and strategists who share an obsession with crafting work that matters.</p>
+                    
+                    <p class="reveal">We work with visionary founders, forward-thinking brands, and ambitious companies who understand that design is not decoration—it's strategy. Our approach blends strategic thinking with meticulous craftsmanship, resulting in digital products and brands that don't just look good, they perform exceptionally.</p>
+
+                    <p class="reveal">Over six years, we've had the privilege of partnering with over 120 brands across fashion, technology, hospitality, and real estate. Our work has been featured in Awwwards, CSS Design Awards, and FWA. But our real metric of success is our clients: 98% retention rate and $4M+ in revenue generated for our partners.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat reveal">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Years in Business</div>
+                        </div>
+                        <div class="stat reveal">
+                            <div class="stat-number">120+</div>
+                            <div class="stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="stat reveal">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Client Retention</div>
+                        </div>
+                        <div class="stat reveal">
+                            <div class="stat-number">$4M+</div>
+                            <div class="stat-label">Revenue Generated</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="St Clair Design Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-number">04</div>
+            <div class="section-header reveal">
+                <h2>OUR TEAM</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member reveal">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Sarah Clair">
+                    </div>
+                    <h4 class="team-name">Sarah Clair</h4>
+                    <p class="team-role">Founder & Creative Director</p>
+                </div>
+
+                <div class="team-member reveal">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="James Chen">
+                    </div>
+                    <h4 class="team-name">James Chen</h4>
+                    <p class="team-role">Design Lead</p>
+                </div>
+
+                <div class="team-member reveal">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Marcus Rodriguez">
+                    </div>
+                    <h4 class="team-name">Marcus Rodriguez</h4>
+                    <p class="team-role">Lead Developer</p>
+                </div>
+
+                <div class="team-member reveal">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" alt="Alex Kim">
+                    </div>
+                    <h4 class="team-name">Alex Kim</h4>
+                    <p class="team-role">Brand Strategist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-container">
+                <div class="quote-mark">"</div>
+                
+                <div class="testimonial active reveal">
+                    <p class="testimonial-text">St Clair Design didn't just build our website—they built our brand. The attention to detail and strategic thinking elevated our entire business.</p>
+                    <p class="testimonial-author">Jessica Martinez</p>
+                    <p class="testimonial-role">Founder, Apex Studios</p>
+                </div>
+
+                <div class="testimonial reveal">
+                    <p class="testimonial-text">Working with the St Clair team was a game-changer. They understood our vision immediately and delivered something even better than we imagined.</p>
+                    <p class="testimonial-author">David Wong</p>
+                    <p class="testimonial-role">CEO, Luna Co.</p>
+                </div>
+
+                <div class="testimonial reveal">
+                    <p class="testimonial-text">Professional, responsive, creative—everything you want in a design partner. Our e-commerce platform has been a massive success because of their work.</p>
+                    <p class="testimonial-author">Rachel Hayes</p>
+                    <p class="testimonial-role">Head of Marketing, Pulse Digital</p>
+                </div>
+
+                <div class="testimonial-dots">
+                    <div class="dot active" data-index="0"></div>
+                    <div class="dot" data-index="1"></div>
+                    <div class="dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: var(--spacing-80); color: white;">
+                <h2 style="color: white;">HOW WE WORK</h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal">
+                    <div class="process-icon">📍</div>
+                    <h4 class="process-title">Discover</h4>
+                    <p class="process-description">We dive deep into your business, goals, and target audience to understand what makes you unique.</p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="process-icon">✏️</div>
+                    <h4 class="process-title">Design</h4>
+                    <p class="process-description">Strategic design concepts that communicate your story and convert your audience into customers.</p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="process-icon">⚙️</div>
+                    <h4 class="process-title">Develop</h4>
+                    <p class="process-description">Clean, performant code that brings designs to life. Fast, scalable, and built to last.</p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="process-icon">🚀</div>
+                    <h4 class="process-title">Deploy</h4>
+                    <p class="process-description">Launch and optimize. We monitor performance and continuously improve results over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-heading">
+                <h2 class="reveal">READY TO BUILD SOMETHING GREAT?</h2>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item reveal">
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">Los Angeles, CA</div>
+                    </div>
+
+                    <div class="contact-item reveal">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value"><a href="mailto:hello@stclairdesign.com">hello@stclairdesign.com</a></div>
+                    </div>
+
+                    <div class="contact-item reveal">
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-value"><a href="tel:+14245550192">+1 (424) 555-0192</a></div>
+                    </div>
+
+                    <div class="contact-item reveal">
+                        <div class="contact-label">Project Budget</div>
+                        <div class="contact-value">Projects start at $25,000</div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group reveal">
+                        <input type="text" class="form-input" placeholder="Your Name" required>
+                        <input type="text" class="form-input" placeholder="Company" required>
+                    </div>
+
+                    <input type="email" class="form-input reveal" placeholder="Email" required>
+
+                    <select class="form-input reveal" required>
+                        <option value="">Select Budget Range</option>
+                        <option value="25-50k">$25,000 - $50,000</option>
+                        <option value="50-100k">$50,000 - $100,000</option>
+                        <option value="100k+">$100,000+</option>
+                    </select>
+
+                    <textarea class="form-input reveal" placeholder="Tell us about your project..." required></textarea>
+
+                    <button type="submit" class="form-submit reveal">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>ST CLAIR DESIGN</h4>
+                    <p style="margin-bottom: var(--spacing-24); font-size: 13px; color: var(--gray-text);">Los Angeles-based digital studio crafting exceptional web design, branding, and digital experiences for ambitious brands.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="#work">Work</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>FOLLOW US</h4>
+                    <div class="social-links">
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Dribbble</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 St Clair Design. All rights reserved.</p>
+                <p>Crafted with intention in Los Angeles.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // NAVBAR SCROLL SHADOW
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // SCROLL REVEAL
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        reveals.forEach(reveal => {
+            observer.observe(reveal);
+        });
+
+        // TESTIMONIALS AUTO-ROTATE
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentTestimonial = index;
+                showTestimonial(currentTestimonial);
+            });
+        });
+
+        setInterval(nextTestimonial, 6000);
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // FORM SUBMISSION
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thanks for reaching out! We\'ll be in touch shortly.');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>

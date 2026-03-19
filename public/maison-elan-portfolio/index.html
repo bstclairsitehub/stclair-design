@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Élan | Paris Luxury Slow Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #0F0F0F;
+            background: #FFFFFF;
+            line-height: 1.9;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            font-weight: 300;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #0F0F0F;
+            line-height: 1.9;
+        }
+
+        .label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #B89468;
+            margin-bottom: 1rem;
+        }
+
+        .secondary-text {
+            color: #777777;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4%;
+            z-index: 1000;
+            border-bottom: 1px solid #E5E5E0;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            color: #0F0F0F;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            color: #0F0F0F;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #B89468;
+        }
+
+        .nav-right {
+            gap: 1.5rem;
+        }
+
+        .instagram-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            margin-top: 60px;
+        }
+
+        .hero-left {
+            background: #FAFAF8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            margin: 2rem 0 1.5rem 0;
+            color: #0F0F0F;
+        }
+
+        .hero-content p {
+            margin-bottom: 2.5rem;
+            color: #777777;
+            font-size: 1.05rem;
+        }
+
+        .cta-link {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            color: #0F0F0F;
+            text-decoration: none;
+            border-bottom: 2px solid #B89468;
+            padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-link:hover {
+            color: #B89468;
+        }
+
+        .hero-right {
+            background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ===== MANIFESTO ===== */
+        .manifesto {
+            background: #FFFFFF;
+            padding: 6rem 4%;
+            text-align: center;
+            border-top: 1px solid #E5E5E0;
+            border-bottom: 1px solid #E5E5E0;
+        }
+
+        .manifesto-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #0F0F0F;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ===== COLLECTION SECTION ===== */
+        .collection {
+            background: #FFFFFF;
+            padding: 6rem 4%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-heading h2 {
+            letter-spacing: 0.05em;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #FFFFFF;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #FAFAF8;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-material {
+            font-size: 0.85rem;
+            color: #777777;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1rem;
+            color: #B89468;
+            font-weight: 600;
+        }
+
+        /* ===== MAISON SECTION ===== */
+        .maison {
+            background: #FAFAF8;
+            padding: 6rem 4%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .maison-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .maison-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .maison-content h2 {
+            margin: 1rem 0 2rem 0;
+        }
+
+        .maison-content p {
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #E5E5E0;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #B89468;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #777777;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background: #FFFFFF;
+            padding: 6rem 4%;
+        }
+
+        .services-heading {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #FAFAF8;
+            padding: 3rem;
+            border-radius: 2px;
+            border: 1px solid #E5E5E0;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 2rem;
+            background: #B89468;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.9;
+        }
+
+        /* ===== PHILOSOPHY SECTION ===== */
+        .philosophy {
+            background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), 
+                        url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 4%;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .philosophy-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .philosophy-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: #CCCCCC;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            background: #FFFFFF;
+            padding: 6rem 4%;
+        }
+
+        .testimonials-heading {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #FAFAF8;
+            padding: 2.5rem;
+            border-radius: 2px;
+            border: 1px solid #E5E5E0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: #777777;
+        }
+
+        .testimonial-author {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-city {
+            font-size: 0.85rem;
+            color: #B89468;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== PRESS SECTION ===== */
+        .press {
+            background: #FAFAF8;
+            padding: 4rem 4%;
+            text-align: center;
+            border-top: 1px solid #E5E5E0;
+            border-bottom: 1px solid #E5E5E0;
+        }
+
+        .press-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .press-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .press-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #0F0F0F;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: #FFFFFF;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .contact-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e35ca?auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .contact-info {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #B89468;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            color: #0F0F0F;
+            line-height: 1.8;
+        }
+
+        .contact-form {
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #E5E5E0;
+            background: #FFFFFF;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.95rem;
+            color: #0F0F0F;
+            border-radius: 2px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #B89468;
+        }
+
+        .submit-btn {
+            background: #B89468;
+            color: #FFFFFF;
+            border: none;
+            padding: 1rem 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .submit-btn:hover {
+            background: #A0845C;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #FFFFFF;
+            padding: 3rem 4%;
+            text-align: center;
+            border-top: 1px solid #E5E5E0;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-separator {
+            width: 40px;
+            height: 1px;
+            background: #E5E5E0;
+            margin: 1.5rem auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-link {
+            text-decoration: none;
+            color: #0F0F0F;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #B89468;
+        }
+
+        .footer-bottom {
+            font-size: 0.85rem;
+            color: #777777;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== FADE-IN ANIMATION ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .hero, .maison, .contact {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-right {
+                min-height: 400px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .manifesto-text {
+                font-size: 1.3rem;
+            }
+
+            .philosophy-quote {
+                font-size: 2rem;
+            }
+
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-left {
+                display: none;
+            }
+
+            .nav-right {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .press-logos {
+                gap: 2rem;
+            }
+
+            .contact {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-image {
+                min-height: 300px;
+            }
+
+            .contact-info {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left {
+                padding: 2rem;
+            }
+
+            .manifesto {
+                padding: 3rem 2rem;
+            }
+
+            .manifesto-text {
+                font-size: 1.1rem;
+            }
+
+            .philosophy {
+                padding: 4rem 2rem;
+            }
+
+            .philosophy-quote {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .press-logos {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-left">
+            <a href="#collection" class="nav-link">Collection</a>
+            <a href="#atelier" class="nav-link">Atelier</a>
+            <a href="#maison" class="nav-link">Maison</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-logo">MAISON ÉLAN</div>
+        <div class="nav-right">
+            <a href="#contact" class="nav-link">
+                <svg class="instagram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <circle cx="17.5" cy="6.5" r="1.5"></circle>
+                </svg>
+            </a>
+            <a href="#contact" class="nav-link">Book Appointment</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-left fade-in">
+            <div class="hero-content">
+                <p class="label">Paris, France — Est. 2014</p>
+                <h1>The Art of Quiet Luxury</h1>
+                <p>Maison Élan was founded with a single conviction: that the most powerful statement a woman can make is effortless. Each piece is made by hand, in small batches, using materials sourced from the world's finest mills.</p>
+                <a href="#collection" class="cta-link">DISCOVER THE COLLECTION →</a>
+            </div>
+        </div>
+        <div class="hero-right fade-in"></div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto fade-in">
+        <p class="manifesto-text">"Crafted without compromise. Worn without effort. Made to last a lifetime."</p>
+    </section>
+
+    <!-- COLLECTION -->
+    <section class="collection">
+        <div class="section-heading fade-in">
+            <h2>COLLECTION PRINTEMPS 2026</h2>
+        </div>
+        <div class="collection-grid">
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=500&q=80" alt="Soie Naturelle Blouse">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Soie Naturelle Blouse</div>
+                    <div class="product-material">French silk, naturally dyed</div>
+                    <div class="product-price">€1,450</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=500&q=80" alt="Manteau Argile">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Manteau Argile</div>
+                    <div class="product-material">Hand-felted wool, clay pigment</div>
+                    <div class="product-price">€2,890</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=500&q=80" alt="Robe de Sauge">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Robe de Sauge</div>
+                    <div class="product-material">Belgian linen, sage plant dye</div>
+                    <div class="product-price">€1,680</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=500&q=80" alt="Veste Crème">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Veste Crème</div>
+                    <div class="product-material">Japanese cashmere-silk, ivory</div>
+                    <div class="product-price">€2,100</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAISON SECTION -->
+    <section class="maison" id="maison">
+        <div class="maison-image fade-in">
+            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=700&q=80" alt="Maison Élan Atelier">
+        </div>
+        <div class="maison-content fade-in">
+            <p class="label">Notre Histoire</p>
+            <h2>A Decade of Deliberate Design</h2>
+            <p>Maison Élan was founded in 2014 by Isabelle Marceau and her sister Sophie, trained at the prestigious École de la Chambre Syndicale de la Couture in Paris. What began in a small atelier on Rue de Rivoli has evolved into a global arbiter of slow fashion—but the philosophy remains unchanged: reject the tyranny of trends, celebrate the artisan's hand, and create garments meant to be treasured, not discarded.</p>
+            <p>We work exclusively with natural fibers and traditional techniques. Our suppliers span from Irish linen mills to Japanese silk producers, each selected for their environmental stewardship and commitment to craft. Every piece takes time, intention, and a refusal to compromise.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Collections</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">38</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Artisans</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Natural Materials</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="atelier">
+        <div class="services-heading fade-in">
+            <h2>NOS SERVICES</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">✂️</div>
+                <h3>Bespoke Tailoring</h3>
+                <p>Eight weeks to create, three personal fittings. Each garment cut to your exact measurements, adjusted for your movement and proportions. Tailoring as it was meant to be—precise, patient, and personal.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">💎</div>
+                <h3>Personal Styling</h3>
+                <p>A private session with our Paris atelier team. We listen to your life, your desires, your silhouette. Together we build a wardrobe—not a collection of individual pieces, but a coherent language that is uniquely yours.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🧵</div>
+                <h3>Fabric Consultation</h3>
+                <p>Access to our vault of 400+ exclusive materials. Italian cashmeres, Japanese silks, Irish linens, hand-dyed wools. We guide you through fiber, weight, and finish—helping you choose what will last a lifetime.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">♻️</div>
+                <h3>Care & Restoration</h3>
+                <p>We restore and maintain all Maison Élan pieces indefinitely. Whether a seam needs reinforcing or a hem adjusting, every garment is forever. We even offer dyeing and alteration services as your life evolves.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section class="philosophy fade-in">
+        <p class="philosophy-quote">"We believe clothes should outlast trends. Ours are made to be inherited."</p>
+        <p class="philosophy-text">Our commitment to sustainability is not a marketing narrative—it is structural. We produce one collection per season. We favor natural fibers, many organic. We partner with mills that practice water stewardship and fair labor. And we design for longevity, not obsolescence. A Maison Élan piece does not age; it ripens.</p>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials fade-in">
+        <div class="testimonials-heading">
+            <h2>WHAT OUR CLIENTS SAY</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">"I purchased the Robe de Sauge three years ago. It has been to Paris, Tokyo, and my daughter's graduation. It looks better now than when I bought it. That's the difference."</p>
+                <div class="testimonial-author">Margot</div>
+                <div class="testimonial-city">Paris</div>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">"The bespoke tailoring experience was revelatory. They didn't just measure me—they understood how I move. The jacket feels like it was born on my shoulders."</p>
+                <div class="testimonial-author">Eleanor</div>
+                <div class="testimonial-city">Londres</div>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">"Maison Élan isn't about trends. It's about self-knowledge. Every piece I own from them has become indispensable. That's the mark of real luxury."</p>
+                <div class="testimonial-author">Claire</div>
+                <div class="testimonial-city">Milan</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESS SECTION -->
+    <section class="press fade-in">
+        <div class="press-heading">AS SEEN IN</div>
+        <div class="press-logos">
+            <div class="press-logo">LE FIGARO</div>
+            <div class="press-logo">VOGUE PARIS</div>
+            <div class="press-logo">FINANCIAL TIMES</div>
+            <div class="press-logo">THE EDIT</div>
+            <div class="press-logo">MONOCLE</div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="contact-image"></div>
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <div class="contact-label">Adresse</div>
+                <div class="contact-value">42 Rue de Rivoli<br>75001 Paris, France</div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">Horaires</div>
+                <div class="contact-value">Lundi–Samedi<br>10h–19h</div>
+            </div>
+
+            <div class="contact-item">
+                <a href="#" class="cta-link">BOOK A PRIVATE APPOINTMENT →</a>
+            </div>
+
+            <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Nom complet" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="form-group">
+                    <select name="service" required>
+                        <option value="">Intérêt de service</option>
+                        <option value="bespoke">Bespoke Tailoring</option>
+                        <option value="styling">Personal Styling</option>
+                        <option value="fabric">Fabric Consultation</option>
+                        <option value="care">Care & Restoration</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea name="message" placeholder="Message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">ENVOYER</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer fade-in>
+        <div class="footer-logo">MAISON ÉLAN</div>
+        <div class="footer-separator"></div>
+        <div class="footer-links">
+            <a href="#collection" class="footer-link">Collection</a>
+            <a href="#atelier" class="footer-link">Atelier</a>
+            <a href="#maison" class="footer-link">Maison</a>
+            <a href="#contact" class="footer-link">Contact</a>
+            <a href="#" class="footer-link">Instagram</a>
+        </div>
+        <div class="footer-bottom">© 2026 Maison Élan. All rights reserved. Paris, France.</div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                service: formData.get('service'),
+                message: formData.get('message')
+            };
+            
+            console.log('Form submitted:', data);
+            alert('Merci! Nous recevrons votre message et vous recontacterons bientôt.');
+            event.target.reset();
+        }
+
+        // Smooth scroll link behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

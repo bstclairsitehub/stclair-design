@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noir & Ember - Chicago Michelin-Starred Fine Dining</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0C0C0C;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #0C0C0C;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flame-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: linear-gradient(135deg, #E8523A 0%, #C4954A 100%);
+            clip-path: polygon(50% 0%, 100% 25%, 85% 100%, 50% 85%, 15% 100%, 0% 25%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: #9A9A9A;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E8523A;
+        }
+
+        .reserve-btn {
+            background: transparent;
+            border: 2px solid #E8523A;
+            color: #E8523A;
+            padding: 10px 24px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .reserve-btn:hover {
+            background: #E8523A;
+            color: #0C0C0C;
+            box-shadow: 0 0 20px rgba(232, 82, 58, 0.4);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            background: #0C0C0C;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 60px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #E8523A;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: #9A9A9A;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .cta-row button {
+            padding: 14px 32px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #E8523A;
+            color: #0C0C0C;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(232, 82, 58, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
+        }
+
+        .btn-outline:hover {
+            background: #FFFFFF;
+            color: #0C0C0C;
+        }
+
+        .stat-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: rgba(232, 82, 58, 0.08);
+            border: 1px solid rgba(232, 82, 58, 0.3);
+            padding: 20px;
+            border-radius: 4px;
+            animation: fadeIn 0.8s ease 0.2s backwards;
+        }
+
+        .stat-card-label {
+            font-size: 11px;
+            color: #9A9A9A;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #E8523A;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: slideInRight 0.8s ease;
+        }
+
+        .image-frame {
+            width: 100%;
+            height: 500px;
+            border: 3px solid #E8523A;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 60px rgba(232, 82, 58, 0.2);
+            pointer-events: none;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background: #F5F0EB;
+            padding: 120px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 550px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #E8523A;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .about-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 44px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-content p {
+            font-size: 15px;
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .about-stat {
+            border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 15px;
+        }
+
+        .about-stat-label {
+            font-size: 11px;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .about-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #E8523A;
+        }
+
+        /* MENU SECTION */
+        .menu {
+            background: #0C0C0C;
+            padding: 120px 60px;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #E8523A;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.2;
+        }
+
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .dish-card {
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .dish-card:hover {
+            border-color: #E8523A;
+            box-shadow: 0 0 30px rgba(232, 82, 58, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .dish-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: rgba(232, 82, 58, 0.1);
+        }
+
+        .dish-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .dish-card:hover .dish-image img {
+            transform: scale(1.05);
+        }
+
+        .dish-content {
+            padding: 28px;
+        }
+
+        .dish-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+        }
+
+        .dish-description {
+            font-size: 13px;
+            color: #9A9A9A;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .dish-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #C4954A;
+        }
+
+        /* EXPERIENCE SECTION */
+        .experience {
+            background: #F5F0EB;
+            padding: 120px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .experience-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #E8523A;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .experience-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .experience-details {
+            font-size: 15px;
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .experience-details strong {
+            color: #111111;
+            font-weight: 600;
+        }
+
+        .menu-dna {
+            display: grid;
+            gap: 30px;
+        }
+
+        .dna-item {
+            animation: slideInUp 0.8s ease;
+        }
+
+        .dna-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .dna-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #111111;
+        }
+
+        .dna-percent {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #E8523A;
+        }
+
+        .dna-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .dna-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #E8523A, #C4954A);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* GALLERY SECTION */
+        .gallery {
+            background: #0C0C0C;
+            padding: 120px 60px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(232, 82, 58, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* PRESS SECTION */
+        .press {
+            background: #F5F0EB;
+            padding: 120px 60px;
+        }
+
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .press-item {
+            animation: fadeIn 0.8s ease;
+        }
+
+        .press-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .press-quote {
+            font-size: 15px;
+            color: #666666;
+            font-style: italic;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .press-stars {
+            font-size: 14px;
+            color: #E8523A;
+            letter-spacing: 2px;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            background: #0C0C0C;
+            padding: 120px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-info h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #E8523A;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .contact-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .info-block {
+            margin-bottom: 40px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #9A9A9A;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: #FFFFFF;
+            line-height: 1.8;
+        }
+
+        .info-value a {
+            color: #E8523A;
+            transition: color 0.3s ease;
+        }
+
+        .info-value a:hover {
+            color: #C4954A;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #9A9A9A;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #E8523A;
+            box-shadow: 0 0 15px rgba(232, 82, 58, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .reservation-btn {
+            width: 100%;
+            background: #E8523A;
+            color: #0C0C0C;
+            padding: 14px 32px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .reservation-btn:hover {
+            box-shadow: 0 0 30px rgba(232, 82, 58, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0C0C0C;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: #9A9A9A;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #E8523A;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #9A9A9A;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-icon:hover {
+            border-color: #E8523A;
+            color: #E8523A;
+            background: rgba(232, 82, 58, 0.1);
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #9A9A9A;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 15px 30px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 30px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .image-frame {
+                height: 400px;
+            }
+
+            .about,
+            .experience,
+            .contact {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 80px 30px;
+            }
+
+            .menu,
+            .gallery,
+            .press,
+            footer {
+                padding: 80px 30px;
+            }
+
+            .dishes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .press-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 12px 20px;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                order: 3;
+                width: 100%;
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+                margin-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .image-frame {
+                height: 300px;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .dishes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 10px 15px;
+            }
+
+            .nav-logo {
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 30px 15px;
+                margin-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .cta-row {
+                flex-direction: column;
+            }
+
+            .stat-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content h3,
+            .experience-content h3 {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .press-name {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-logo">
+            <span class="flame-icon"></span>
+            NOIR / EMBER
+        </div>
+        <div class="nav-links">
+            <a href="#menu">Menu</a>
+            <a href="#story">Story</a>
+            <a href="#contact">Reservations</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <button class="reserve-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">RESERVE A TABLE</button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Chicago, IL • Est. 2018 • 1 Michelin Star</div>
+            <h1>WHERE FIRE MEETS FINESSE.</h1>
+            <p class="hero-subtitle">A celebration of char, smoke, and precision. Chef Marcus Bellamy's 18-course tasting menu reimagines the open flame as both technique and philosophy.</p>
+            <div class="cta-row">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">BOOK YOUR TABLE</button>
+                <button class="btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">EXPLORE THE MENU</button>
+            </div>
+            <div class="stat-cards">
+                <div class="stat-card">
+                    <div class="stat-card-label">★★★ Michelin Guide 2024</div>
+                    <div class="stat-card-value">1 STAR</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">Tasting Menu Price</div>
+                    <div class="stat-card-value">$185</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">Course Experience</div>
+                    <div class="stat-card-value">18 Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">Service Duration</div>
+                    <div class="stat-card-value">2.5-3H</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" alt="Noir & Ember Restaurant">
+                <div class="image-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / STORY SECTION -->
+    <section class="about" id="story">
+        <div class="about-image reveal">
+            <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?auto=format&fit=crop&w=600&q=80" alt="Chef Marcus Bellamy">
+        </div>
+        <div class="about-content reveal">
+            <h2>01 / OUR STORY</h2>
+            <h3>Chef Marcus Bellamy</h3>
+            <p>Trained under René Redzepi at Noma, Copenhagen, where he spent two years understanding minimalism and Nordic principles. Marcus then moved to The Fat Duck with Heston Blumenthal for three intensive years, mastering molecular gastronomy and the science of flavor. Returning to Chicago in 2018, he opened Noir & Ember on West Randolph Street—a restaurant where fire becomes philosophy. Michelin recognition followed within 18 months, validating his radical approach to the open flame as the soul of modern cooking.</p>
+            <div class="about-stats">
+                <div class="about-stat">
+                    <div class="about-stat-label">Michelin Recognition</div>
+                    <div class="about-stat-value">1 Star</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-label">Time to Star</div>
+                    <div class="about-stat-value">18 Months</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-label">Training Background</div>
+                    <div class="about-stat-value">Noma + Fat Duck</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-label">Menu Philosophy</div>
+                    <div class="about-stat-value">100% Seasonal</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu" id="menu">
+        <div class="section-header reveal">
+            <div class="section-label">02 / THE MENU</div>
+            <h2 class="section-title">Signature Dishes</h2>
+        </div>
+        <div class="dishes-grid">
+            <div class="dish-card reveal">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Charred Beet & Ash">
+                </div>
+                <div class="dish-content">
+                    <div class="dish-name">Charred Beet & Ash</div>
+                    <div class="dish-description">Fire-roasted heritage beet, juniper ash, elderflower cream, foraged micro-herbs</div>
+                    <div class="dish-price">$24</div>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1432139509613-5c4255815697?auto=format&fit=crop&w=600&q=80" alt="Ember-Smoked Duck Breast">
+                </div>
+                <div class="dish-content">
+                    <div class="dish-name">Ember-Smoked Duck</div>
+                    <div class="dish-description">12-hour cherry wood smoke, black plum reduction, crispy duck skin shards</div>
+                    <div class="dish-price">$38</div>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80" alt="Noir Sea Urchin Tart">
+                </div>
+                <div class="dish-content">
+                    <div class="dish-name">Noir Sea Urchin Tart</div>
+                    <div class="dish-description">Hokkaido sea urchin, squid ink shell, preserved lemon, caviar</div>
+                    <div class="dish-price">$42</div>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Fire-Kissed A5 Wagyu">
+                </div>
+                <div class="dish-content">
+                    <div class="dish-name">Fire-Kissed A5 Wagyu</div>
+                    <div class="dish-description">Japanese Wagyu strip, bone marrow butter, ember-roasted shallot</div>
+                    <div class="dish-price">$56</div>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=600&q=80" alt="Volcanic Chocolate Sphere">
+                </div>
+                <div class="dish-content">
+                    <div class="dish-name">Volcanic Chocolate Sphere</div>
+                    <div class="dish-description">Dark Valrhona chocolate, salted caramel lava, hazelnut praline</div>
+                    <div class="dish-price">$16</div>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-image">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Ember Caramel Soufflé">
+                </div>
+                <div class="dish-content">
+                    <div class="dish-name">Ember Caramel Soufflé</div>
+                    <div class="dish-description">12-minute tableside prep, brûléed sugar, aged Armagnac cream</div>
+                    <div class="dish-price">$18</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE / TASTING MENU SECTION -->
+    <section class="experience" id="experience">
+        <div class="experience-content reveal">
+            <h2>03 / THE EXPERIENCE</h2>
+            <h3>18-Course Tasting Menu</h3>
+            <div class="experience-details">
+                <p><strong>Duration:</strong> 2.5 to 3 hours of uninterrupted culinary exploration, where each course is precisely timed and explained by our sommelier and service team.</p>
+                <p style="margin-top: 15px;"><strong>Menu:</strong> $185 per person. Wine pairing available at $95 per person, curated by our award-winning sommelier.</p>
+                <p style="margin-top: 15px;"><strong>Dietary Options:</strong> Vegetarian tasting menu available. Please note any allergies at booking.</p>
+                <p style="margin-top: 15px;"><strong>Private Dining:</strong> Groups of 10-20 guests can book our semi-private dining room for a customized experience.</p>
+            </div>
+        </div>
+        <div class="menu-dna reveal">
+            <div class="dna-item">
+                <div class="dna-label">
+                    <span class="dna-name">Fire & Smoke Intensity</span>
+                    <span class="dna-percent">90%</span>
+                </div>
+                <div class="dna-bar">
+                    <div class="dna-fill" style="--target: 90%;"></div>
+                </div>
+            </div>
+            <div class="dna-item">
+                <div class="dna-label">
+                    <span class="dna-name">Seasonal Sourcing</span>
+                    <span class="dna-percent">98%</span>
+                </div>
+                <div class="dna-bar">
+                    <div class="dna-fill" style="--target: 98%;"></div>
+                </div>
+            </div>
+            <div class="dna-item">
+                <div class="dna-label">
+                    <span class="dna-name">Japanese Technique Influence</span>
+                    <span class="dna-percent">75%</span>
+                </div>
+                <div class="dna-bar">
+                    <div class="dna-fill" style="--target: 75%;"></div>
+                </div>
+            </div>
+            <div class="dna-item">
+                <div class="dna-label">
+                    <span class="dna-name">French Classical Roots</span>
+                    <span class="dna-percent">85%</span>
+                </div>
+                <div class="dna-bar">
+                    <div class="dna-fill" style="--target: 85%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+        <div class="section-header reveal">
+            <div class="section-label">04 / THE SPACE</div>
+            <h2 class="section-title">Restaurant Gallery</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Dining Area">
+                <div class="gallery-overlay"></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80" alt="Plating Station">
+                <div class="gallery-overlay"></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=500&q=80" alt="Open Kitchen">
+                <div class="gallery-overlay"></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=80" alt="Intimate Seating">
+                <div class="gallery-overlay"></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=500&q=80" alt="Cocktail Bar">
+                <div class="gallery-overlay"></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1508424757105-b6d5ad9329d0?auto=format&fit=crop&w=500&q=80" alt="Entrance">
+                <div class="gallery-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESS / ACCOLADES SECTION -->
+    <section class="press" id="press">
+        <div class="section-header reveal">
+            <div class="section-label">05 / AS SEEN IN</div>
+            <h2 class="section-title">Press & Accolades</h2>
+        </div>
+        <div class="press-grid">
+            <div class="press-item reveal">
+                <div class="press-name">The Guardian</div>
+                <div class="press-quote">"A revolution in fire cooking. Bellamy has redefined what it means to cook with flame in the modern era."</div>
+                <div class="press-stars">★ ★ ★ ★ ★</div>
+            </div>
+            <div class="press-item reveal">
+                <div class="press-name">New York Times</div>
+                <div class="press-quote">"Chef Bellamy has found magic in the flame. Each course tells a story written in smoke and precision."</div>
+                <div class="press-stars">★ ★ ★ ★ ★</div>
+            </div>
+            <div class="press-item reveal">
+                <div class="press-name">Bon Appétit</div>
+                <div class="press-quote">"One of America's most exciting new restaurants. A must-visit destination for serious diners."</div>
+                <div class="press-stars">★ ★ ★ ★ ★</div>
+            </div>
+            <div class="press-item reveal">
+                <div class="press-name">Michelin Guide 2023-2024</div>
+                <div class="press-quote">Awarded one Michelin star in recognition of exceptional cuisine and technique.</div>
+                <div class="press-stars">★ Michelin Star</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / RESERVATIONS SECTION -->
+    <section class="contact" id="contact">
+        <div class="contact-info reveal">
+            <h2>06 / VISIT US</h2>
+            <h3>Make a Reservation</h3>
+            <div class="info-block">
+                <div class="info-label">Address</div>
+                <div class="info-value">1247 West Randolph Street<br>Chicago, IL 60607</div>
+            </div>
+            <div class="info-block">
+                <div class="info-label">Hours</div>
+                <div class="info-value">Tuesday – Saturday<br>6:00 PM – 10:00 PM<br><span style="font-size: 12px; color: #9A9A9A;">Closed Sundays & Mondays</span></div>
+            </div>
+            <div class="info-block">
+                <div class="info-label">Contact</div>
+                <div class="info-value"><a href="tel:+13125550184">+1 (312) 555-0184</a><br><a href="mailto:reservations@noirember.com">reservations@noirember.com</a></div>
+            </div>
+        </div>
+        <form class="reservation-form reveal" onsubmit="handleReservation(event)">
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date *</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Preferred Time *</label>
+                <select id="time" name="time" required>
+                    <option value="">Select a time</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="6:30 PM">6:30 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="7:30 PM">7:30 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="8:30 PM">8:30 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="guests">Party Size *</label>
+                <select id="guests" name="guests" required>
+                    <option value="">Select party size</option>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5 Guests</option>
+                    <option value="6">6 Guests</option>
+                    <option value="7+">7+ Guests (Contact us)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="occasion">Special Occasion</label>
+                <input type="text" id="occasion" name="occasion" placeholder="Birthday, Anniversary, etc.">
+            </div>
+            <div class="form-group">
+                <label for="notes">Special Requests *</label>
+                <textarea id="notes" name="notes" placeholder="Allergies, dietary preferences, seating requests..." required></textarea>
+            </div>
+            <button type="submit" class="reservation-btn">REQUEST RESERVATION</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-col">
+            <h4>Noir & Ember</h4>
+            <div class="social-icons">
+                <a href="#" class="social-icon">f</a>
+                <a href="#" class="social-icon">i</a>
+                <a href="#" class="social-icon">t</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Navigation</h4>
+            <div class="footer-links">
+                <a href="#menu">Menu</a>
+                <a href="#story">Story</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <div class="footer-links">
+                <a href="tel:+13125550184">+1 (312) 555-0184</a>
+                <a href="mailto:reservations@noirember.com">reservations@noirember.com</a>
+                <a href="#">1247 West Randolph</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Noir & Ember. All Rights Reserved. Chicago, Illinois. | Michelin Guide 2023-2024
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal with IntersectionObserver
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animated Progress Bars
+        const dnaObserverOptions = {
+            threshold: 0.3
+        };
+
+        const dnaObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fill = entry.target.querySelector('.dna-fill');
+                    const target = parseFloat(entry.target.style.getPropertyValue('--target')) || 0;
+                    let current = 0;
+                    const increment = target / 60;
+
+                    const animate = () => {
+                        if (current < target) {
+                            current += increment;
+                            fill.style.width = Math.min(current, target) + '%';
+                            requestAnimationFrame(animate);
+                        }
+                    };
+                    animate();
+                    dnaObserver.unobserve(entry.target);
+                }
+            });
+        }, dnaObserverOptions);
+
+        document.querySelectorAll('.dna-item').forEach(item => {
+            dnaObserver.observe(item);
+        });
+
+        // Form Handling
+        function handleReservation(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: document.getElementById('guests').value,
+                occasion: document.getElementById('occasion').value,
+                notes: document.getElementById('notes').value
+            };
+
+            console.log('Reservation Request:', formData);
+            alert(`Thank you, ${formData.name}! Your reservation request has been received. We will confirm shortly at ${formData.email}.`);
+
+            // Reset form
+            document.querySelector('.reservation-form').reset();
+        }
+
+        // Smooth scroll offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(12, 12, 12, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = '#0C0C0C';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

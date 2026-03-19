@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Capital - Quantitative Investment Management</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #CCCCCC;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #FFFFFF;
+        }
+
+        h1 {
+            font-size: 80px;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            color: #888888;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        a {
+            color: #C8F048;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #E8FF88;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: #C8F048;
+            color: #0A0A0A;
+            border: 2px solid #C8F048;
+        }
+
+        .btn-primary:hover {
+            background-color: #E8FF88;
+            border-color: #E8FF88;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #C8F048;
+            border: 2px solid #C8F048;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(200, 240, 72, 0.1);
+            border-color: #E8FF88;
+            color: #E8FF88;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            background-color: rgba(10, 10, 10, 0);
+            border-bottom: 1px solid rgba(255, 255, 255, 0);
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: #FFFFFF;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #888888;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #C8F048;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 40px 40px;
+            background: linear-gradient(135deg, #0A0A0A 0%, #0F1520 50%, #0A1410 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(20, 120, 80, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(50, 100, 150, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #888888;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.8s both;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background-color: rgba(17, 17, 17, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 24px 32px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #C8F048;
+            background-color: rgba(200, 240, 72, 0.05);
+            box-shadow: 0 0 20px rgba(200, 240, 72, 0.2);
+        }
+
+        .stat-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #C8F048;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888888;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Marquee Section */
+        .marquee-section {
+            background-color: #C8F048;
+            color: #0A0A0A;
+            padding: 20px 0;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .marquee {
+            display: flex;
+            width: fit-content;
+            animation: scrollMarquee 30s linear infinite;
+            gap: 80px;
+        }
+
+        .marquee-item {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            white-space: nowrap;
+            letter-spacing: -0.02em;
+        }
+
+        @keyframes scrollMarquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 40px;
+            background-color: #0A0A0A;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            color: #888888;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+        }
+
+        .about-text {
+            color: #888888;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .about-stat {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 24px;
+        }
+
+        .about-stat-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: #C8F048;
+            margin-bottom: 8px;
+        }
+
+        .about-stat-label {
+            font-size: 14px;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 40px;
+            background-color: #0A0A0A;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .services-header {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .services-header h2 {
+            color: #888888;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .services-title {
+            font-size: 48px;
+            color: #FFFFFF;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            border-color: #C8F048;
+            background-color: rgba(200, 240, 72, 0.02);
+            box-shadow: 0 0 30px rgba(200, 240, 72, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .service-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #C8F048;
+            margin-bottom: 24px;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #FFFFFF;
+        }
+
+        .service-card p {
+            flex-grow: 1;
+            margin-bottom: 24px;
+            color: #888888;
+            font-size: 15px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #C8F048;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .service-link:hover {
+            gap: 20px;
+        }
+
+        .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Case Studies / Insights Section */
+        .insights {
+            padding: 100px 40px;
+            background-color: #0A0A0A;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .insights-header {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .insights-header h2 {
+            color: #888888;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .insights-title {
+            font-size: 48px;
+            color: #FFFFFF;
+        }
+
+        .insights-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .insight-card {
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .insight-card:nth-child(1)::before {
+            background-image: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.6)), url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80');
+        }
+
+        .insight-card:nth-child(2)::before {
+            background-image: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.6)), url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80');
+        }
+
+        .insight-card:hover {
+            border-color: #C8F048;
+            box-shadow: 0 0 30px rgba(200, 240, 72, 0.15);
+        }
+
+        .insight-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
+            height: 100%;
+        }
+
+        .insight-tag {
+            display: inline-block;
+            background-color: rgba(200, 240, 72, 0.15);
+            border: 1px solid rgba(200, 240, 72, 0.3);
+            color: #C8F048;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            width: fit-content;
+            margin-bottom: 16px;
+        }
+
+        .insight-card h3 {
+            font-size: 32px;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+        }
+
+        .insight-excerpt {
+            color: #888888;
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .insight-link {
+            color: #C8F048;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 100px 40px;
+            background-color: #0A0A0A;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .process-header {
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+
+        .process-header h2 {
+            color: #888888;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .process-title {
+            font-size: 48px;
+            color: #FFFFFF;
+        }
+
+        .process-timeline {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(200, 240, 72, 0.2), transparent);
+            z-index: 1;
+        }
+
+        .process-step {
+            background-color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 24px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #C8F048;
+            border: 2px solid #0A0A0A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0A0A0A;
+        }
+
+        .process-step:nth-child(1)::before {
+            content: '01';
+        }
+
+        .process-step:nth-child(2)::before {
+            content: '02';
+        }
+
+        .process-step:nth-child(3)::before {
+            content: '03';
+        }
+
+        .process-step:nth-child(4)::before {
+            content: '04';
+        }
+
+        .process-step h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .process-step p {
+            font-size: 14px;
+            color: #888888;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 40px;
+            background-color: #0A0A0A;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .team-header {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .team-header h2 {
+            color: #888888;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .team-title {
+            font-size: 48px;
+            color: #FFFFFF;
+        }
+
+        .team-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .team-member {
+            background-color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .team-member:hover {
+            border-color: #C8F048;
+            box-shadow: 0 0 30px rgba(200, 240, 72, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .team-member-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .team-member-content {
+            padding: 32px;
+        }
+
+        .team-member h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .team-member-role {
+            font-size: 14px;
+            color: #C8F048;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .team-member-bio {
+            font-size: 14px;
+            color: #888888;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 40px;
+            background-color: #0A0A0A;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .testimonials-header {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .testimonials-header h2 {
+            color: #888888;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .testimonials-title {
+            font-size: 48px;
+            color: #FFFFFF;
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background-color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: #C8F048;
+            background-color: rgba(200, 240, 72, 0.02);
+        }
+
+        .stars {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+
+        .star {
+            color: #C8F048;
+            font-size: 18px;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            color: #888888;
+            margin-bottom: 24px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-role {
+            font-size: 14px;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 40px;
+            background-color: #0A0A0A;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .contact-header h2 {
+            color: #888888;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .contact-title {
+            font-size: 48px;
+            color: #FFFFFF;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background-color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #CCCCCC;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #C8F048;
+            background-color: rgba(200, 240, 72, 0.02);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info {
+            background-color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 32px;
+        }
+
+        .contact-item {
+            margin-bottom: 32px;
+        }
+
+        .contact-item-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888888;
+            margin-bottom: 8px;
+        }
+
+        .contact-item-content {
+            font-size: 16px;
+            color: #CCCCCC;
+            line-height: 1.6;
+        }
+
+        .contact-item-content a {
+            color: #C8F048;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0A0A0A;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 60px 40px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+        }
+
+        .footer-description {
+            font-size: 14px;
+            color: #888888;
+            line-height: 1.6;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #888888;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #C8F048;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: #888888;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888888;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: #C8F048;
+            color: #C8F048;
+            background-color: rgba(200, 240, 72, 0.05);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 60px;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 48px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            nav {
+                height: 60px;
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 60px 20px 20px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .hero {
+                padding: 40px 16px;
+            }
+
+            .marquee {
+                font-size: 14px;
+                gap: 40px;
+            }
+
+            .about,
+            .services,
+            .insights,
+            .process,
+            .team,
+            .testimonials,
+            .contact,
+            footer {
+                padding: 60px 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">APEX CAPITAL</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="btn btn-primary" style="margin-left: 20px;">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>QUANTIFIED WEALTH.<br>ENGINEERED PRECISION.</h1>
+            <p class="hero-subtitle">At Apex Capital, we combine decades of quantitative research with institutional-grade execution to deliver superior risk-adjusted returns in any market environment. Our systematic approach transforms market complexity into strategic advantage.</p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView();">Schedule a Consultation</button>
+                <button class="btn btn-outline" onclick="document.getElementById('services').scrollIntoView();">View Strategy</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">$50M+</div>
+                    <div class="stat-label">Minimum Investment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">24%</div>
+                    <div class="stat-label">Avg. Annual Returns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">Year Track Record</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <section class="marquee-section">
+        <div class="marquee">
+            <span class="marquee-item">RISK-ADJUSTED RETURNS</span>
+            <span class="marquee-item">QUANTITATIVE ANALYSIS</span>
+            <span class="marquee-item">GLOBAL ALPHA</span>
+            <span class="marquee-item">INSTITUTIONAL GRADE</span>
+            <span class="marquee-item">RISK-ADJUSTED RETURNS</span>
+            <span class="marquee-item">QUANTITATIVE ANALYSIS</span>
+            <span class="marquee-item">GLOBAL ALPHA</span>
+            <span class="marquee-item">INSTITUTIONAL GRADE</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>WHO WE ARE</h2>
+                <p class="about-text">
+                    Apex Capital Partners was founded in 2006 by veteran quantitative researchers from MIT and Goldman Sachs, driven by a singular vision: to apply rigorous mathematical frameworks to capital markets with institutional discipline. Over nearly two decades, we've built a reputation for delivering consistent, superior returns through systematic multi-factor strategies that adapt seamlessly to evolving market regimes.
+                </p>
+                <p class="about-text">
+                    Our approach combines proprietary machine learning models with traditional factor analysis, spanning global equities, macro overlays, and volatility arbitrage. With $2.8 billion in assets under management and a minimum investment of $50 million, we serve family offices, foundations, and institutional allocators seeking nuanced exposure to liquid markets with exceptional risk management. Our team remains deeply invested in the success of our partners—the founder principals maintain significant personal capital alongside client assets.
+                </p>
+            </div>
+            <div>
+                <div class="about-image"></div>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <div class="about-stat-value">$2.8B</div>
+                        <div class="about-stat-label">Assets Under Management</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">24%</div>
+                        <div class="about-stat-label">Annualized Return (18Y)</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">340+</div>
+                        <div class="about-stat-label">Institutional Partners</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">1.8</div>
+                        <div class="about-stat-label">Sharpe Ratio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-header">
+            <h2>WHAT WE DO</h2>
+            <p style="color: #888888; font-size: 16px; max-width: 700px;">We deliver bespoke solutions across multiple dimensions of institutional capital management, each grounded in rigorous quantitative research and proven by years of consistent execution.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-number">01</div>
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L8 12V28C8 36.84 24 44 24 44S40 36.84 40 28V12L24 4Z" stroke="#C8F048" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24 24L18 18M24 24L30 18" stroke="#C8F048" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h3>Quantitative Portfolio Management</h3>
+                <p>Multi-factor systematic strategies deployed across global equities with dynamic hedging and real-time rebalancing protocols.</p>
+                <a href="#" class="service-link">Explore <span class="arrow">→</span></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-number">02</div>
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16V40M24 8V40M36 20V40" stroke="#C8F048" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="8" y1="40" x2="40" y2="40" stroke="#C8F048" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M24 4L26 10L32 10.5L27.5 14.5L29 20.5L24 17L19 20.5L21 14.5L16.5 10.5L22 10Z" stroke="#C8F048" stroke-width="1.5" fill="#C8F048"/>
+                </svg>
+                <h3>Risk Analytics & Hedging</h3>
+                <p>Advanced volatility modeling and stress testing to safeguard capital. Bespoke hedging overlays customized to your risk tolerance.</p>
+                <a href="#" class="service-link">Explore <span class="arrow">→</span></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-number">03</div>
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="16" width="12" height="20" rx="2" stroke="#C8F048" stroke-width="2"/>
+                    <rect x="30" y="12" width="12" height="24" rx="2" stroke="#C8F048" stroke-width="2"/>
+                    <path d="M18 30L30 12" stroke="#C8F048" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <h3>Alternative Asset Allocation</h3>
+                <p>Structured exposure to liquid alternatives including systematic macro, volatility arbitrage, and multi-strategy platforms.</p>
+                <a href="#" class="service-link">Explore <span class="arrow">→</span></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-number">04</div>
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="24" r="6" stroke="#C8F048" stroke-width="2"/>
+                    <circle cx="24" cy="20" r="6" stroke="#C8F048" stroke-width="2"/>
+                    <circle cx="36" cy="24" r="6" stroke="#C8F048" stroke-width="2"/>
+                    <path d="M18 24H30M26 17V23M22 27V33" stroke="#C8F048" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <h3>Family Office Advisory</h3>
+                <p>Dedicated relationship teams and bespoke governance structures for ultra-high-net-worth families and their next generation.</p>
+                <a href="#" class="service-link">Explore <span class="arrow">→</span></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-number">05</div>
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 14H40M8 24H40M8 34H40" stroke="#C8F048" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="20" cy="14" r="2" fill="#C8F048"/>
+                    <circle cx="20" cy="24" r="2" fill="#C8F048"/>
+                    <circle cx="20" cy="34" r="2" fill="#C8F048"/>
+                </svg>
+                <h3>Tax-Efficient Structuring</h3>
+                <p>Strategic vehicle architecture and distribution optimization designed to maximize after-tax returns and minimize friction.</p>
+                <a href="#" class="service-link">Explore <span class="arrow">→</span></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-number">06</div>
+                <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L28 12H36L30 17L32 25L24 20L16 25L18 17L12 12H20L24 4Z" stroke="#C8F048" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <path d="M8 32C6 36 6 42 12 44C18 46 22 42 24 40C26 42 30 46 36 44C42 42 42 36 40 32" stroke="#C8F048" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <h3>ESG Integration</h3>
+                <p>Environmental and governance factor integration within quantitative frameworks to align returns with values.</p>
+                <a href="#" class="service-link">Explore <span class="arrow">→</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights" id="insights">
+        <div class="insights-header">
+            <h2>CASE STUDIES & INSIGHTS</h2>
+            <p style="color: #888888; font-size: 16px; max-width: 700px;">Real-world applications of our systematic approach and market perspectives from the Apex research team.</p>
+        </div>
+        <div class="insights-grid">
+            <div class="insight-card reveal">
+                <div class="insight-content">
+                    <div class="insight-tag">Case Study</div>
+                    <h3>Navigating the 2024 Volatility Surge</h3>
+                    <p class="insight-excerpt">How our multi-factor model identified alpha opportunities during unprecedented market dislocations, maintaining positive returns while the broad market contracted.</p>
+                    <a href="#" class="insight-link">Read More →</a>
+                </div>
+            </div>
+            <div class="insight-card reveal">
+                <div class="insight-content">
+                    <div class="insight-tag">Research</div>
+                    <h3>The Future of Quantitative Investing</h3>
+                    <p class="insight-excerpt">Emerging trends in machine learning applications, ESG factor research, and the evolution of systematic strategies in a generative AI era.</p>
+                    <a href="#" class="insight-link">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="process-header">
+            <h2>HOW WE WORK</h2>
+            <p style="color: #888888; font-size: 16px; margin-top: 16px;">A structured pathway from initial engagement to long-term partnership and ongoing optimization.</p>
+        </div>
+        <div class="process-timeline reveal">
+            <div class="process-step">
+                <h3>Discovery</h3>
+                <p>In-depth conversations to understand your investment objectives, risk tolerances, time horizon, and legacy considerations.</p>
+            </div>
+            <div class="process-step">
+                <h3>Analysis</h3>
+                <p>Our team models multiple portfolio structures against your constraints, backtesting across historical market regimes.</p>
+            </div>
+            <div class="process-step">
+                <h3>Strategy</h3>
+                <p>Presentation of customized investment thesis with detailed risk metrics, return scenarios, and implementation roadmap.</p>
+            </div>
+            <div class="process-step">
+                <h3>Execution</h3>
+                <p>Seamless fund launch, ongoing monitoring, quarterly reviews, and real-time adjustments as markets and your needs evolve.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="team-header">
+            <h2>OUR TEAM</h2>
+            <p style="color: #888888; font-size: 16px; max-width: 700px;">Veteran portfolio managers, mathematicians, and engineers united by a passion for rigorous analysis and disciplined execution.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member reveal">
+                <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="team-member-content">
+                    <h3>James Rothschild</h3>
+                    <div class="team-member-role">Founder & CIO</div>
+                    <p class="team-member-bio">PhD in Mathematics (MIT). 16 years at Goldman Sachs as Head of Quantitative Strategies. Founded Apex Capital in 2006.</p>
+                </div>
+            </div>
+            <div class="team-member reveal">
+                <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="team-member-content">
+                    <h3>David Kim</h3>
+                    <div class="team-member-role">Co-Founder & CRO</div>
+                    <p class="team-member-bio">PhD Physics (Stanford). 14 years at Renaissance Technologies. Leads risk and operational architecture at Apex.</p>
+                </div>
+            </div>
+            <div class="team-member reveal">
+                <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="team-member-content">
+                    <h3>Sarah Martinez</h3>
+                    <div class="team-member-role">Senior Portfolio Manager</div>
+                    <p class="team-member-bio">MS Financial Engineering (Berkeley). 12 years managing institutional allocations. Leads multi-factor equity strategies.</p>
+                </div>
+            </div>
+            <div class="team-member reveal">
+                <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="team-member-content">
+                    <h3>Elizabeth Chen</h3>
+                    <div class="team-member-role">Head of Research</div>
+                    <p class="team-member-bio">PhD Computer Science (CMU). 10 years in machine learning. Oversees model development and backtesting infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-header">
+            <h2>WHAT OUR PARTNERS SAY</h2>
+            <p style="color: #888888; font-size: 16px; margin-top: 16px;">Trusted by family offices, foundations, and institutional allocators worldwide.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <p class="testimonial-quote">"Apex Capital's systematic approach has been transformative for our family office. Consistent returns with significantly lower volatility than our previous managers. Their transparency and intellectual rigor are unmatched."</p>
+                <div class="testimonial-author">Michael Patterson</div>
+                <div class="testimonial-role">Family Office Principal, Boston</div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <p class="testimonial-quote">"After evaluating dozens of quantitative strategies, Apex stood out for their deep fundamental research married with machine learning discipline. The results speak for themselves across multiple market cycles."</p>
+                <div class="testimonial-author">Sarah Thompson</div>
+                <div class="testimonial-role">Chief Investment Officer, Fortune 500 Endowment</div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <p class="testimonial-quote">"What distinguishes Apex is their willingness to customize strategy without compromising the quantitative rigor. A rare combination of flexibility and discipline in today's market."</p>
+                <div class="testimonial-author">Marcus Holloway</div>
+                <div class="testimonial-role">Managing Director, Global Asset Manager</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div>
+                <h2 style="color: #888888; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;">GET IN TOUCH</h2>
+                <h3 class="contact-title">Schedule Your Private Consultation</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="aum">Assets Under Management</label>
+                        <select id="aum" name="aum" required>
+                            <option value="">Select Range</option>
+                            <option value="50-100">$50M - $100M</option>
+                            <option value="100-250">$100M - $250M</option>
+                            <option value="250-500">$250M - $500M</option>
+                            <option value="500+">$500M+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Contact Details</h3>
+                <div class="contact-item">
+                    <div class="contact-item-label">New York Office</div>
+                    <div class="contact-item-content">
+                        Apex Capital Partners<br>
+                        885 Madison Avenue, Suite 1500<br>
+                        New York, NY 10022<br>
+                        <a href="tel:+12125551234">+1 (212) 555-1234</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-label">London Office</div>
+                    <div class="contact-item-content">
+                        Level 12, One Canada Square<br>
+                        Canary Wharf<br>
+                        London, E14 5AA<br>
+                        <a href="tel:+442071461000">+44 (20) 7146 1000</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-label">Singapore Office</div>
+                    <div class="contact-item-content">
+                        Marina Bay Financial Centre<br>
+                        8 Marina Boulevard, Suite 4200<br>
+                        Singapore 018981<br>
+                        <a href="tel:+6562180150">+65 6218 0150</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-label">General Inquiries</div>
+                    <div class="contact-item-content">
+                        <a href="mailto:inquiries@apexcap.com">inquiries@apexcap.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">APEX CAPITAL</div>
+                <p class="footer-description">Quantitative investing for sophisticated allocators. Founded 2006. Managing $2.8B in assets through systematic, risk-aware strategies across global markets.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Firm</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#insights">Research</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Portfolio Management</a></li>
+                    <li><a href="#services">Risk Analytics</a></li>
+                    <li><a href="#services">Family Office</a></li>
+                    <li><a href="#services">ESG Integration</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Regulatory</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2026 Apex Capital Partners. All rights reserved. | <a href="#" style="color: #888888;">Privacy Policy</a> | <a href="#" style="color: #888888;">Terms of Service</a></p>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">tw</a>
+                <a href="#" class="social-link">fb</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        const counterObserverOptions = {
+            threshold: 0.5
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.hasAttribute('data-counted')) {
+                    animateCounters(entry.target);
+                    entry.target.setAttribute('data-counted', 'true');
+                }
+            });
+        }, counterObserverOptions);
+
+        function animateCounters(element) {
+            const stats = element.querySelectorAll('.stat-value');
+            stats.forEach(stat => {
+                const finalValue = stat.textContent;
+                const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                const duration = 2000;
+                const steps = 60;
+                const increment = numericValue / steps;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericValue) {
+                        stat.textContent = finalValue;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + (finalValue.includes('%') ? '%' : (finalValue.includes('B') ? 'B' : ''));
+                    }
+                }, duration / steps);
+            });
+        }
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            counterObserver.observe(heroStats);
+        }
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                console.log('Form submitted:', Object.fromEntries(formData));
+                alert('Thank you for your inquiry. Our team will contact you shortly.');
+                contactForm.reset();
+            });
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
