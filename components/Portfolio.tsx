@@ -187,53 +187,38 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
       {/* Modal Card */}
-      <div className="portfolio-modal-card relative w-full max-w-[900px] max-h-[90vh] overflow-y-auto bg-sc-surface border border-sc-border shadow-[0_40px_120px_rgba(0,0,0,0.6)]">
+      <div className="portfolio-modal-card relative w-full max-w-[900px] max-h-[90vh] overflow-y-auto bg-sc-surface border border-sc-border shadow-[0_40px_120px_rgba(0,0,0,0.6)] rounded-lg">
         {/* Close */}
         <button
           onClick={onClose}
-          className="hoverable absolute top-4 right-4 z-10 w-10 h-10 border border-sc-border rounded-full flex items-center justify-center text-sc-muted hover:text-sc-gold hover:border-sc-gold transition-all duration-300 bg-sc-surface/80 backdrop-blur-sm"
+          className="hoverable absolute top-6 right-6 z-10 w-12 h-12 border border-sc-border rounded-full flex items-center justify-center text-sc-muted hover:text-sc-gold hover:border-sc-gold transition-all duration-300 bg-sc-surface/90 backdrop-blur-md hover:bg-sc-surface"
+          aria-label="Close modal"
         >
           <CloseIcon />
         </button>
 
-        {/* Preview Area — real screenshot inside browser frame */}
-        <div className="relative w-full aspect-[16/9] bg-sc-black overflow-hidden">
-          {/* Browser chrome frame */}
-          <div className="absolute inset-0 flex flex-col">
-            <div className="h-8 md:h-9 bg-[#1a1a1a] flex items-center px-3 gap-1.5 border-b border-white/[0.06] shrink-0 z-10">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-              <div className="flex-1 mx-4">
-                <div className="bg-white/[0.06] rounded px-3 py-0.5 text-[10px] text-sc-muted tracking-[0.5px] w-fit mx-auto">
-                  {project.slug}.com
-                </div>
-              </div>
-            </div>
-            {/* Screenshot fills the rest */}
-            <div className="flex-1 overflow-hidden relative">
-              <img
-                src={project.thumbnail}
-                alt={`${project.title} website`}
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-          </div>
+        {/* Preview Area — clean screenshot with minimal frame */}
+        <div className="relative w-full aspect-[16/9] bg-sc-black overflow-hidden rounded-lg border border-sc-border/50">
+          <img
+            src={project.thumbnail}
+            alt={`${project.title} website`}
+            className="w-full h-full object-cover object-top"
+          />
           {/* Year badge */}
-          <div className="absolute top-12 left-4 text-[10px] tracking-[3px] uppercase px-3 py-1 border border-white/10 text-white/60 bg-black/40 backdrop-blur-sm z-20">
+          <div className="absolute top-6 left-6 text-[10px] tracking-[3px] uppercase px-3 py-1 border border-white/10 text-white/60 bg-black/50 backdrop-blur-sm z-20">
             {project.year}
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-8 md:p-10">
+        <div className="p-6 md:p-8 lg:p-10">
           {/* Title row */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
-            <div>
+            <div className="flex-1">
               <div className="text-[10px] tracking-[3px] uppercase mb-3" style={{ color: project.accentColor }}>
                 {project.type}
               </div>
-              <h3 className="font-serif text-[28px] md:text-[36px] font-light text-sc-cream leading-tight">
+              <h3 className="font-serif text-[24px] md:text-[36px] font-light text-sc-cream leading-tight">
                 {project.title}
               </h3>
             </div>
@@ -254,7 +239,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           <div className="w-12 h-px bg-sc-gold-dim mb-6" />
 
           {/* Description */}
-          <p className="text-[14px] md:text-[15px] leading-[1.85] text-sc-text max-w-[680px] mb-8">
+          <p className="text-[13px] md:text-[15px] leading-[1.85] text-sc-text max-w-[680px] mb-8">
             {project.description}
           </p>
 
@@ -313,14 +298,14 @@ export default function Portfolio() {
 
   return (
     <>
-      <section id="portfolio" className="bg-sc-black py-24 md:py-36 overflow-hidden">
+      <section id="portfolio" className="bg-sc-black py-20 md:py-24 lg:py-36 overflow-hidden">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end max-w-[1300px] mx-auto mb-16 gap-6 px-6 md:px-12">
-          <div>
-            <div className="section-label-line reveal text-[10px] font-medium tracking-[5px] uppercase text-sc-gold mb-5 flex items-center gap-4">
+        <div className="flex flex-col gap-8 md:flex-row md:justify-between md:items-end max-w-[1300px] mx-auto mb-12 md:mb-16 px-6 md:px-12">
+          <div className="flex-1">
+            <div className="section-label-line reveal text-[9px] md:text-[10px] font-medium tracking-[4px] md:tracking-[5px] uppercase text-sc-gold mb-4 md:mb-5 flex items-center gap-3 md:gap-4">
               Selected Work
             </div>
-            <h2 className="reveal font-serif text-[clamp(36px,5vw,64px)] font-light text-sc-cream leading-[1.15] max-w-[700px]">
+            <h2 className="reveal font-serif text-[clamp(32px,5vw,64px)] font-light text-sc-cream leading-[1.15] max-w-[700px]">
               Projects that <em className="italic text-sc-gold">speak</em> for themselves
             </h2>
           </div>
@@ -330,7 +315,7 @@ export default function Portfolio() {
               e.preventDefault();
               scrollTo("#contact");
             }}
-            className="btn-primary hoverable reveal shrink-0 px-10 py-4 border border-sc-gold text-sc-gold font-sans text-[11px] font-medium tracking-[3px] uppercase no-underline"
+            className="btn-primary hoverable reveal shrink-0 w-full md:w-auto px-8 md:px-10 py-3 md:py-4 border border-sc-gold text-sc-gold font-sans text-[10px] md:text-[11px] font-medium tracking-[2.5px] md:tracking-[3px] uppercase no-underline text-center"
           >
             Start a Project
           </a>
@@ -408,7 +393,10 @@ export default function Portfolio() {
       {selectedProject && (
         <ProjectModal
           project={selectedProject}
-          onClose={() => setSelectedProject(null)}
+          onClose={() => {
+            setSelectedProject(null);
+            document.body.style.overflow = "";
+          }}
         />
       )}
     </>

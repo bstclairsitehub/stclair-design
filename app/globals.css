@@ -129,6 +129,15 @@ nav.scrolled {
 }
 .nav-link:hover::after { width: 100%; }
 
+/* ===== HERO FLOATING LINES ===== */
+.hero-line {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-sc-gold-dim), transparent);
+  opacity: 0.08;
+  animation: heroLineFloat 8s ease-in-out infinite;
+}
+
 /* ===== HERO ANIMATIONS ===== */
 .hero-tag-anim {
   opacity: 0; transform: translateY(20px);
@@ -216,7 +225,8 @@ nav.scrolled {
   transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
 }
 .portfolio-thumb:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== PORTFOLIO MODAL ===== */
@@ -292,6 +302,18 @@ nav.scrolled {
 .stat-card:hover {
   border-color: var(--color-sc-gold-dim);
   background: rgba(201,169,110,0.03);
+}
+
+/* ===== FORM INPUTS ===== */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-sc-gold);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input, textarea, select {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ===== RESPONSIVE ===== */

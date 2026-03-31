@@ -40,28 +40,28 @@ const expertiseItems = [
 
 export default function Expertise() {
   return (
-    <section id="expertise" className="bg-sc-deep py-24 md:py-36 px-6 md:px-12 overflow-hidden">
+    <section id="expertise" className="bg-sc-deep py-20 md:py-24 lg:py-36 px-6 md:px-12 overflow-hidden">
       <div className="max-w-[1300px] mx-auto">
-        <div className="section-label-line reveal text-[10px] font-medium tracking-[5px] uppercase text-sc-gold mb-5 flex items-center gap-4">
+        <div className="section-label-line reveal text-[9px] md:text-[10px] font-medium tracking-[4px] md:tracking-[5px] uppercase text-sc-gold mb-4 md:mb-5 flex items-center gap-3 md:gap-4">
           Capabilities
         </div>
-        <h2 className="reveal font-serif text-[clamp(36px,5vw,64px)] font-light text-sc-cream leading-[1.15] max-w-[700px] mb-10">
+        <h2 className="reveal font-serif text-[clamp(32px,5vw,64px)] font-light text-sc-cream leading-[1.15] max-w-[700px] mb-8 md:mb-10 lg:mb-15">
           Where craft meets <em className="italic text-sc-gold">obsession</em>
         </h2>
 
-        <div className="reveal grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-sc-border mt-15">
+        <div className="reveal grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-sc-border mt-12 md:mt-15">
           {expertiseItems.map(({ number, name, desc }) => (
             <div
               key={number}
-              className="expertise-item hoverable bg-sc-deep p-10 md:p-12"
+              className="expertise-item hoverable bg-sc-deep p-8 md:p-10 lg:p-12"
             >
-              <div className="font-serif text-sm text-sc-gold-dim mb-5 font-normal">
+              <div className="font-serif text-xs md:text-sm text-sc-gold-dim mb-4 md:mb-5 font-normal">
                 {number}
               </div>
-              <div className="font-serif text-[26px] font-normal text-sc-cream mb-3.5">
+              <div className="font-serif text-[22px] md:text-[26px] font-normal text-sc-cream mb-3">
                 {name}
               </div>
-              <div className="text-[13px] text-sc-muted leading-[1.7] font-light">
+              <div className="text-[12px] md:text-[13px] text-sc-muted leading-[1.7] font-light">
                 {desc}
               </div>
             </div>
