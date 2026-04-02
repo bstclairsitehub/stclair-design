@@ -1,3 +1,5 @@
+'use client'
+
 import CustomCursor from "@/components/CustomCursor";
 import ScrollReveal from "@/components/ScrollReveal";
 import Navigation from "@/components/Navigation";

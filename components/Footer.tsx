@@ -18,7 +18,7 @@ export default function Footer() {
           Back to Top ↑
         </a>
       </div>
-      <span className="text-[9px] text-sc-muted/40 tracking-[3px] uppercase">
+      <span className="text-[9px] text-sc-muted/60 tracking-[3px] uppercase">
         Designed &amp; Developed by St. Clair Design Co.
       </span>
     </footer>
